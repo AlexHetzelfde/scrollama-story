@@ -2,32 +2,31 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<title>Scrollama Story</title>
+<title>Scrollama Story - NOS-style</title>
 <style>
   html, body {
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: Arial, sans-serif;
     height: 100%;
     overflow-x: hidden;
-  }
-
-  body {
-    transition: background 1s ease; /* achtergrond fade effect */
+    transition: background 1s ease; /* fade effect voor achtergrond */
   }
 
   section {
     height: 100vh; /* elk blok vult scherm */
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-size: 2em;
     color: white;
     text-align: center;
     padding: 20px;
+    box-sizing: border-box;
   }
 
-  /* Voorbeeld achtergrondkleuren per blok */
+  /* Voorbeeld achtergrond kleuren per blok */
   #step1 { background: #1f1f1f; }
   #step2 { background: #2a2a70; }
   #step3 { background: #4a2a4a; }
@@ -42,21 +41,47 @@
     margin-top: 20px;
   }
 
+  h1, p {
+    max-width: 800px;
+  }
+
 </style>
 </head>
 <body>
 
-<section id="step1">Tekstblok 1: Introductie</section>
-<section id="step2">Tekstblok 2: Context</section>
+<section id="step1">
+  <h1>Tekstblok 1: Introductie</h1>
+  <p>Hier begint het verhaal, net zoals de NOS-story. Je kan achtergrondkleuren of afbeeldingen gebruiken.</p>
+</section>
+
+<section id="step2">
+  <h1>Tekstblok 2: Context</h1>
+  <p>Voeg hier extra context toe. Tekst staat centraal over de achtergrond.</p>
+</section>
+
 <section id="step3">
-  Tekstblok 3: Interactieve visualisatie hieronder
-  <!-- voorbeeld Flourish iframe -->
+  <h1>Tekstblok 3: Interactieve visualisatie</h1>
+  <p>Hier kan een Flourish-grafiek of kaart komen.</p>
+  <!-- Voorbeeld Flourish iframe: vervang your_visualisation_id door een echte -->
   <iframe src="https://flo.uri.sh/visualisation/your_visualisation_id/embed"></iframe>
 </section>
-<section id="step4">Tekstblok 4: Analyse</section>
-<section id="step5">Tekstblok 5: Gevolgen</section>
-<section id="step6">Tekstblok 6: Conclusie</section>
 
+<section id="step4">
+  <h1>Tekstblok 4: Analyse</h1>
+  <p>Voeg analyses, extra afbeeldingen of quotes toe.</p>
+</section>
+
+<section id="step5">
+  <h1>Tekstblok 5: Gevolgen</h1>
+  <p>Schrijf hier de gevolgen of impact van het onderwerp.</p>
+</section>
+
+<section id="step6">
+  <h1>Tekstblok 6: Conclusie</h1>
+  <p>Sluit af met een samenvatting of call-to-action.</p>
+</section>
+
+<!-- Scrollama script -->
 <script src="https://unpkg.com/scrollama"></script>
 <script>
   const scroller = scrollama();
@@ -66,7 +91,7 @@
     offset: 0.5        // activeer bij half scherm
   })
   .onStepEnter(({ element, index }) => {
-    // verander achtergrond van de body naar het huidige section
+    // fade achtergrond naar de achtergrond van het huidige section
     document.body.style.background = window.getComputedStyle(element).background;
   });
 </script>
