@@ -9,6 +9,7 @@
     padding: 0;
     font-family: Arial, sans-serif;
     color: #000;
+    height: 100%;
   }
 
   /* Achtergrond-div: fixed, full viewport */
@@ -17,23 +18,23 @@
     top: 0; left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1;
-    transition: background 1s ease;
+    z-index: -1; /* staat achter de tekst */
     background-size: cover;
     background-position: center;
+    transition: background 1s ease;
   }
 
   section {
-    min-height: 100vh;
+    min-height: 100vh; /* volle hoogte viewport */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 40px;
+    padding: 20px;
     box-sizing: border-box;
   }
 
   .text-block {
-    background: rgba(255,255,255,0.5); /* witte achtergrond met 50% transparantie */
+    background: rgba(255,255,255,0.5); /* alleen het blok is wit en half-transparant */
     padding: 30px;
     border-radius: 10px;
     max-width: 800px;
@@ -46,7 +47,7 @@
 <body>
 
 <!-- Achtergrond -->
-<div id="bg" style="background:#1f1f1f;"></div>
+<div id="bg" style="background: url('images/bg1.jpg') center/cover no-repeat;"></div>
 
 <!-- Tekstblokken -->
 <section>
@@ -95,15 +96,16 @@ scroller.setup({
   offset: 0.5
 })
 .onStepEnter(({ index }) => {
-  // Achtergrond per blok instellen (je kan dit vervangen door echte afbeeldingen)
-  switch(index) {
-    case 0: bg.style.background = "url('images/bg1.jpg') center/cover no-repeat"; break;
-    case 1: bg.style.background = "url('images/bg2.jpg') center/cover no-repeat"; break;
-    case 2: bg.style.background = "url('images/bg3.jpg') center/cover no-repeat"; break;
-    case 3: bg.style.background = "url('images/bg4.jpg') center/cover no-repeat"; break;
-    case 4: bg.style.background = "url('images/bg5.jpg') center/cover no-repeat"; break;
-    case 5: bg.style.background = "url('images/bg6.jpg') center/cover no-repeat"; break;
-  }
+  // Achtergrond per blok instellen (vervang door je eigen afbeeldingen)
+  const backgrounds = [
+    'images/bg1.jpg',
+    'images/bg2.jpg',
+    'images/bg3.jpg',
+    'images/bg4.jpg',
+    'images/bg5.jpg',
+    'images/bg6.jpg'
+  ];
+  bg.style.background = `url('${backgrounds[index]}') center/cover no-repeat`;
 });
 </script>
 
