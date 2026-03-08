@@ -13,7 +13,7 @@ height:100%;
 font-family:Arial, sans-serif;
 }
 
-/* achtergrond layer */
+/* achtergrond */
 
 #bg{
 position:fixed;
@@ -30,7 +30,7 @@ background-repeat:no-repeat;
 transition:background-image 0.8s ease;
 }
 
-/* scroll sections */
+/* standaard sectie */
 
 section{
 min-height:100vh;
@@ -41,7 +41,13 @@ padding:20px;
 box-sizing:border-box;
 }
 
-/* tekst blok */
+/* langere scroll secties */
+
+.long{
+min-height:200vh;
+}
+
+/* tekstblok */
 
 .text-block{
 
@@ -64,22 +70,22 @@ text-align:justify;
 
 <body>
 
-<!-- achtergrond -->
-
 <div id="bg"></div>
 
 
-<!-- SECTIES -->
+<!-- SECTIE 1 (LANGER) -->
 
-<section>
+<section class="long">
 <div class="text-block">
 Iranische president Pezeshkian zegt dat de strijdkrachten geen buurlanden meer aanvallen of raketten afvuren, tenzij Iran zelf wordt aangevallen. Het is nog onduidelijk of de aanvallen daadwerkelijk worden gestaakt.
 </div>
 </section>
 
-<!-- FOTO 2 ZONDER TEKST -->
 
-<section></section>
+<!-- FOTO 2 ZONDER TEKST (LANGER) -->
+
+<section class="long"></section>
+
 
 <section>
 <div class="text-block">
@@ -119,26 +125,19 @@ De Arabische Liga houdt spoedoverleg over de aanvallen. De VS en Iran zijn aarts
 const scroller = scrollama();
 const bg = document.getElementById("bg");
 
-/* achtergronden per section */
-
 const backgrounds = [
 
-"images/foto1.jpg",  // tekstblok 1
-
-"images/foto2.png",  // losse foto
-
-"images/foto3.png",  // tekstblok 2
-
-"", 
-"", 
-"", 
+"images/foto1.jpg",
+"images/foto2.png",
+"images/foto3.png",
+"",
+"",
+"",
 ""
 
 ];
 
-
-scroller
-.setup({
+scroller.setup({
 
 step:"section",
 offset:0.5
