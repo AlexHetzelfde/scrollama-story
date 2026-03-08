@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<title>Scrollama Achtergrond Afbeeldingen</title>
+<title>Scrollama Story</title>
 
 <style>
 
@@ -30,23 +30,19 @@ background-repeat:no-repeat;
 transition:background-image 0.8s ease;
 }
 
-/* standaard secties */
+/* alle secties even lang */
 
 section{
-min-height:100vh;
+min-height:300vh;
 display:flex;
 justify-content:center;
-align-items:center;
-padding:20px;
-box-sizing:border-box;
-}
-
-/* langere scroll secties */
-
-.long{
-min-height:300vh;
 align-items:flex-start;
+
 padding-top:20vh;
+padding-left:20px;
+padding-right:20px;
+
+box-sizing:border-box;
 }
 
 /* tekstblok */
@@ -74,50 +70,41 @@ text-align:justify;
 
 <div id="bg"></div>
 
-
-<!-- SECTIE 1 LANGER -->
-
-<section class="long">
-<div class="text-block">
-Iranische president Pezeshkian zegt dat de strijdkrachten geen buurlanden meer aanvallen of raketten afvuren, tenzij Iran zelf wordt aangevallen. Het is nog onduidelijk of de aanvallen daadwerkelijk worden gestaakt.
-</div>
-</section>
-
-
-<!-- FOTO 2 LANGER ZONDER TEKST -->
-
-<section class="long"></section>
-
-
+<!-- 1 -->
 <section>
 <div class="text-block">
-Bij Israëlische luchtaanvallen en commandoacties in Oost-Libanon vielen ruim 40 doden. De stad Nabi Chit raakte zwaar beschadigd, tientallen mensen raakten gewond.
+Iranische president Pezeshkian zegt dat de strijdkrachten geen buurlanden meer aanvallen of raketten afvuren, tenzij Iran zelf wordt aangevallen.
 </div>
 </section>
 
+<!-- 2 -->
+<section></section>
+
+<!-- 3 -->
 <section>
 <div class="text-block">
-Nederlanders worden geëvacueerd uit Qatar en andere landen; vluchten naar Rome, Parijs, Londen en Frankfurt vertrekken. Passagiers ervaren spanning tijdens vertrek, maar zijn opgelucht na opstijgen.
+Bij Israëlische luchtaanvallen en commandoacties in Oost-Libanon vielen ruim 40 doden.
 </div>
 </section>
 
+<!-- 4 (foto3 blijft nog even staan) -->
+<section></section>
+
+<!-- 5 foto4 -->
+<section></section>
+
+<!-- 6 foto5 + tekstblok 3 -->
 <section>
 <div class="text-block">
-In Iran communiceren mensen via tussenpersonen over hun ervaringen tijdens de aanvallen. Het internet ligt grotendeels plat, waardoor direct contact moeilijk is. Mensen delen hun angst, zorgen en hoop.
+Nederlanders worden geëvacueerd uit Qatar en andere landen; vluchten naar Rome, Parijs, Londen en Frankfurt vertrekken.
 </div>
 </section>
 
-<section>
-<div class="text-block">
-Hezbollah roept inwoners van Noord-Israël op te evacueren; het Israëlische leger doet soortgelijke waarschuwingen voor Libanese steden. Buitenlands personeel van oliebedrijven wordt geëvacueerd uit Irak en Koeweit.
-</div>
-</section>
+<!-- 7 foto6 -->
+<section></section>
 
-<section>
-<div class="text-block">
-De Arabische Liga houdt spoedoverleg over de aanvallen. De VS en Iran zijn aartsvijanden, Iran stopte voorlopig met aanvallen op buurlanden. Er worden militaire repatriëringsacties uitgevoerd voor gestrande Nederlanders, en de situatie in het Midden-Oosten blijft onvoorspelbaar.
-</div>
-</section>
+<!-- 8 foto7 -->
+<section></section>
 
 
 <script src="https://unpkg.com/scrollama"></script>
@@ -127,15 +114,18 @@ De Arabische Liga houdt spoedoverleg over de aanvallen. De VS en Iran zijn aarts
 const scroller = scrollama();
 const bg = document.getElementById("bg");
 
+/* volgorde van achtergronden */
+
 const backgrounds = [
 
-"images/foto1.jpg",
-"images/foto2.png",
-"images/foto3.png",
-"",
-"",
-"",
-""
+"images/foto1.jpg",  // tekst 1
+"images/foto2.png",  // foto 2
+"images/foto3.png",  // tekst 2
+"images/foto3.png",  // foto 3 blijft staan
+"images/foto4.png",  // foto 4
+"images/foto5.png",  // tekst 3
+"images/foto6.png",  // foto 6
+"images/foto7.png"   // foto 7
 
 ];
 
