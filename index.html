@@ -2,7 +2,7 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<title>Scrollama Achtergrond Kleuren</title>
+<title>Scrollama Achtergrond Afbeeldingen</title>
 <style>
   html, body {
     margin: 0;
@@ -18,8 +18,10 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: -1; /* staat achter alles */
-    transition: background-color 0.8s ease; /* fade effect */
+    z-index: -1;
+    transition: background-image 0.8s ease;
+    background-size: cover;
+    background-position: center;
   }
 
   section {
@@ -32,7 +34,7 @@
   }
 
   .text-block {
-    background: rgba(255,255,255,0.5); /* wit half-transparant */
+    background: rgba(255,255,255,0.5);
     padding: 30px;
     border-radius: 10px;
     max-width: 800px;
@@ -45,14 +47,18 @@
 <body>
 
 <!-- Achtergrond -->
-<div id="bg" style="background-color:#f0f0f0;"></div>
+<div id="bg"></div>
 
 <!-- Tekstblokken -->
+
 <section>
   <div class="text-block">
     Iranische president Pezeshkian zegt dat de strijdkrachten geen buurlanden meer aanvallen of raketten afvuren, tenzij Iran zelf wordt aangevallen. Het is nog onduidelijk of de aanvallen daadwerkelijk worden gestaakt.
   </div>
 </section>
+
+<!-- EXTRA FOTO ZONDER TEKST -->
+<section></section>
 
 <section>
   <div class="text-block">
@@ -89,16 +95,27 @@
 const scroller = scrollama();
 const bg = document.getElementById('bg');
 
-// Achtergrondkleuren per tekstblok
-const colors = ['#ffcccc','#ffe0b3','#ffffb3','#ccffcc','#b3e0ff','#d9b3ff'];
+/* Achtergrondafbeeldingen per stap */
+const backgrounds = [
+  "images/foto1.jpg", // tekstblok 1
+  "images/foto2.jpg", // lege foto
+  "images/foto3.jpg", // tekstblok 2
+  "", 
+  "", 
+  "", 
+  ""
+];
 
 scroller.setup({
   step: 'section',
   offset: 0.5
 })
 .onStepEnter(({ index }) => {
-  // verander achtergrondkleur bij binnenkomen van nieuwe sectie
-  bg.style.backgroundColor = colors[index];
+
+  if(backgrounds[index]) {
+    bg.style.backgroundImage = `url(${backgrounds[index]})`;
+  }
+
 });
 </script>
 
