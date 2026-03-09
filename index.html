@@ -23,7 +23,13 @@ html, body {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  transition: opacity 0.6s ease;
   z-index: -2;
+}
+
+#bg2 {
+  opacity: 0;
+  z-index: -1;
 }
 
 /* secties */
@@ -77,45 +83,46 @@ section.image {
 <body>
 
 <div id="bg1" class="bg-layer"></div>
+<div id="bg2" class="bg-layer"></div>
 
 <img id="plane1" class="plane" src="images/plane1.png">
 <img id="plane2" class="plane" src="images/plane2.png">
 <img id="plane3" class="plane" src="images/plane3.png">
 
-<!-- 1. Foto1 + Tekstblok 1 -->
-<section class="image" style="background-image:url('images/foto1.jpg');">
+<!-- 1. Foto1 + Tekstblok1 -->
+<section>
   <div class="text-block">
     Iranische president Pezeshkian zegt dat de strijdkrachten geen buurlanden meer aanvallen.
   </div>
 </section>
 
 <!-- 2. Foto2 -->
-<section class="image" style="background-image:url('images/foto2.png');">
-</section>
+<section class="image"></section>
 
-<!-- 3. Foto3 + Tekstblok 2 -->
-<section class="image" style="background-image:url('images/foto3.png');">
+<!-- 3. Foto3 + Tekstblok2 -->
+<section>
   <div class="text-block">
     Bij Israëlische luchtaanvallen in Oost-Libanon vielen ruim 40 doden.
   </div>
 </section>
 
 <!-- 4. Foto4 -->
-<section class="image" style="background-image:url('images/foto4.png');">
-</section>
+<section class="image"></section>
 
-<!-- 5. Foto5 + Tekstblok 3 -->
-<section class="image" style="background-image:url('images/foto5.png');">
+<!-- 5. Foto5 + Tekstblok3 -->
+<section>
   <div class="text-block">
     Nederlanders worden geëvacueerd uit Qatar en andere landen.
   </div>
 </section>
 
-<!-- 6. Foto7 + vliegtuigen -->
-<section class="image" style="background-image:url('images/foto7.jpg');" id="flightScene">
-</section>
+<!-- 6. Foto6 (alleen beeld) -->
+<section class="image"></section>
 
-<!-- 7. Andere tekstblokjes -->
+<!-- 7. Foto7 + vliegtuigen -->
+<section class="image" id="flightScene"></section>
+
+<!-- 8+. Overige tekstblokjes -->
 <section>
   <div class="text-block">
     In Iran communiceren mensen via tussenpersonen over hun ervaringen tijdens de aanvallen.
@@ -134,8 +141,53 @@ section.image {
   </div>
 </section>
 
+<script src="https://unpkg.com/scrollama"></script>
 <script>
-/* vliegtuigen animatie */
+const scroller = scrollama();
+const bg1 = document.getElementById("bg1");
+const bg2 = document.getElementById("bg2");
+let activeLayer = 1;
+
+/* lineaire achtergrondvolgorde per sectie */
+const backgrounds = [
+  "images/foto1.jpg", // sectie 1
+  "images/foto2.png", // sectie 2
+  "images/foto3.png", // sectie 3
+  "images/foto4.png", // sectie 4
+  "images/foto5.png", // sectie 5
+  "images/foto6.png", // sectie 6
+  "images/foto7.jpg", // sectie 7
+  "", "", "", ""      // overige tekstsecties
+];
+
+function changeBackground(image){
+  if(!image){
+    bg1.style.opacity = 0;
+    bg2.style.opacity = 0;
+    return;
+  }
+  if(activeLayer === 1){
+    bg2.style.backgroundImage = `url(${image})`;
+    bg2.style.opacity = 1;
+    bg1.style.opacity = 0;
+    activeLayer = 2;
+  } else {
+    bg1.style.backgroundImage = `url(${image})`;
+    bg1.style.opacity = 1;
+    bg2.style.opacity = 0;
+    activeLayer = 1;
+  }
+}
+
+/* scrollama setup */
+scroller.setup({
+  step: "section",
+  offset: 0.6
+}).onStepEnter(response => {
+  changeBackground(backgrounds[response.index]);
+});
+
+/* vliegtuig animatie voor sectie 7 */
 const plane1 = document.getElementById("plane1");
 const plane2 = document.getElementById("plane2");
 const plane3 = document.getElementById("plane3");
@@ -145,7 +197,6 @@ window.addEventListener("scroll", () => {
   const rectFlight = flightScene.getBoundingClientRect();
   const windowHeight = window.innerHeight;
 
-  /* vliegtuigen zichtbaar bij foto7 sectie */
   if(rectFlight.top < windowHeight && rectFlight.bottom > 0){
     plane1.style.opacity = 1;
     plane2.style.opacity = 1;
@@ -156,16 +207,12 @@ window.addEventListener("scroll", () => {
     plane3.style.opacity = 0;
   }
 
-  /* animatie vliegtuigen */
   let progress = 1 - rectFlight.top / windowHeight;
   progress = Math.max(0, Math.min(1, progress));
 
-  plane1.style.transform =
-    `translate(${-800 * progress}px, ${-350 * progress}px) rotate(-18deg)`;
-  plane2.style.transform =
-    `translate(${-700 * progress}px, ${-300 * progress}px) rotate(-12deg)`;
-  plane3.style.transform =
-    `translate(${-450 * progress}px, ${-260 * progress}px) rotate(-10deg)`;
+  plane1.style.transform = `translate(${-800 * progress}px, ${-350 * progress}px) rotate(-18deg)`;
+  plane2.style.transform = `translate(${-700 * progress}px, ${-300 * progress}px) rotate(-12deg)`;
+  plane3.style.transform = `translate(${-450 * progress}px, ${-260 * progress}px) rotate(-10deg)`;
 });
 </script>
 
