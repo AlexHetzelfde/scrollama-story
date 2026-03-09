@@ -11,11 +11,12 @@ margin:0;
 padding:0;
 font-family:Arial,sans-serif;
 
+/* voorkomt overslaan */
 scroll-snap-type:y mandatory;
 scroll-behavior:smooth;
 }
 
-/* achtergrond */
+/* achtergrond layers */
 
 .bg-layer{
 position:fixed;
@@ -96,24 +97,22 @@ z-index:5;
 
 opacity:0;
 
-transition:opacity 0.6s ease;
-
 }
 
-/* startpositie (Golfregio) */
+/* startpositie bij Iran / Golf */
 
 #plane1{
-bottom:18%;
+bottom:22%;
 right:18%;
 }
 
 #plane2{
-bottom:15%;
+bottom:19%;
 right:14%;
 }
 
 #plane3{
-bottom:12%;
+bottom:16%;
 right:10%;
 }
 
@@ -172,10 +171,9 @@ Nederlanders worden geëvacueerd uit Qatar en andere landen.
 
 <section id="mapScene" class="image"></section>
 
-<!-- 8 vliegtuig animatie -->
+<!-- 8 vliegtuigen vliegen -->
 
 <section id="flightScene" class="image"></section>
-
 
 <!-- overige tekst -->
 
@@ -208,6 +206,9 @@ const bg1 = document.getElementById("bg1");
 const bg2 = document.getElementById("bg2");
 
 let activeLayer = 1;
+
+
+/* NIEUWE ACHTERGRONDEN */
 
 const backgrounds = [
 
@@ -260,9 +261,7 @@ offset:0.6
 
 .onStepEnter(response=>{
 
-const index = response.index;
-
-changeBackground(backgrounds[index]);
+changeBackground(backgrounds[response.index]);
 
 });
 
@@ -276,7 +275,7 @@ const plane3 = document.getElementById("plane3");
 const flightScene = document.getElementById("flightScene");
 
 
-window.addEventListener("scroll", ()=>{
+window.addEventListener("scroll",()=>{
 
 const rect = flightScene.getBoundingClientRect();
 
@@ -287,7 +286,7 @@ let progress = 1 - rect.top / windowHeight;
 progress = Math.max(0, Math.min(1, progress));
 
 
-/* vliegtuigen zichtbaar maken */
+/* zichtbaar maken bij kaart */
 
 if(progress > 0){
 
@@ -304,16 +303,16 @@ plane3.style.opacity = 0;
 }
 
 
-/* routes */
+/* animatie routes */
 
 plane1.style.transform =
-`translate(${-700 * progress}px, ${-350 * progress}px) rotate(-20deg)`;
+`translate(${-600 * progress}px, ${-350 * progress}px) rotate(-18deg)`;
 
 plane2.style.transform =
-`translate(${-600 * progress}px, ${-300 * progress}px) rotate(-15deg)`;
+`translate(${-500 * progress}px, ${-300 * progress}px) rotate(-12deg)`;
 
 plane3.style.transform =
-`translate(${-500 * progress}px, ${-280 * progress}px) rotate(-10deg)`;
+`translate(${-450 * progress}px, ${-260 * progress}px) rotate(-10deg)`;
 
 });
 
