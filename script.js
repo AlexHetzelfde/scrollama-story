@@ -42,11 +42,9 @@ document.addEventListener("DOMContentLoaded", () => {
     maxScroll = window.innerHeight * steps.length;
   });
 
-  // ====== GORDIJN-LANDING EFFECT (WHEEL GEBRUIK) ======
-  const landingLayer = document.getElementById("landing-layer");
-
-// START STORY ONLY AFTER LANDING SCROLL
-const landingHeight = document.getElementById("landing-layer").offsetHeight;
+  // HEIGHT van landing layer
+const landingLayer = document.getElementById("landing-layer");
+const landingHeight = landingLayer.offsetHeight;
 const container = document.getElementById("container");
 const textLayer = document.getElementById("text-layer");
 const backgroundLayer = document.getElementById("background-layer");
@@ -54,9 +52,15 @@ const backgroundLayer = document.getElementById("background-layer");
 window.addEventListener("scroll", () => {
   const scrollY = window.scrollY;
 
-  if (scrollY >= landingHeight) {
-    // Start parallax van je bestaande content
+  if (scrollY < landingHeight) {
+    // FASE 1: alleen landing page scroll
+    container.style.top = "0px"; // storytelling blijft op z'n plek
+    textLayer.style.transform = "translateY(0px)";
+    backgroundLayer.style.transform = "translateY(0px)";
+  } else {
+    // FASE 2: storytelling scroll begint
     const scrollPosition = scrollY - landingHeight;
+    container.style.top = "0px"; // kan blijven staan
     textLayer.style.transform = `translateY(${-scrollPosition}px)`;
     backgroundLayer.style.transform = `translateY(${-scrollPosition * 0.6}px)`;
   }
