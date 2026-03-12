@@ -4,7 +4,6 @@
   box-sizing:border-box;
 }
 
-/* BODY */
 body{
   font-family: Arial, Helvetica, sans-serif;
   background:black;
@@ -33,21 +32,16 @@ body{
   color:#ccc;
 }
 
-/* STORY CONTAINER */
+/* CONTAINER */
 #container{
   position:relative;
-  width:100vw;
-  height:100%;
-  overflow:visible;
+  width:100%;
 }
 
-/* BACKGROUND LAYER */
+/* BACKGROUND */
 #background-layer{
-  position:absolute;
-  top:0;
-  left:0;
+  position:relative; /* RELATIEF zodat alle bg-panelen blijven staan */
   width:100%;
-  will-change:transform;
 }
 
 .bg-panel{
@@ -72,32 +66,28 @@ body{
 
 /* TEXT LAYER */
 #text-layer{
-  position:absolute;
-  top:0;
-  left:0;
+  position:relative; /* RELATIEF zodat alle steps in de normale flow staan */
   width:100%;
-  will-change:transform;
 }
 
 /* STORY STEPS */
 .step{
   height:100vh;
   display:flex;
-  align-items:center;      /* verticaal centreren */
-  justify-content:center;  /* horizontaal centreren */
-  padding:0;               /* geen extra padding meer */
+  align-items:center;
+  justify-content:center;
   position:relative;
 }
 
 /* LEFT / RIGHT */
 .left{
   justify-content:flex-start;
-  padding-left:5vw; /* optioneel: iets ruimte van links */
+  padding-left:5vw;
 }
 
 .right{
   justify-content:flex-end;
-  padding-right:5vw; /* optioneel: iets ruimte van rechts */
+  padding-right:5vw;
 }
 
 /* TEXTBOX */
@@ -113,7 +103,7 @@ body{
   justify-content:center;
   text-align:center;
   font-size:18px;
-  position:relative; /* midden van step */
+  position:relative;
 }
 
 /* VIDEO STEP */
