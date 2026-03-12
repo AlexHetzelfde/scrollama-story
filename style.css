@@ -6,7 +6,7 @@ box-sizing:border-box;
 
 body{
 font-family:Arial, Helvetica, sans-serif;
-overflow:hidden;
+overflow:auto;
 background:black;
 }
 
@@ -170,19 +170,14 @@ box-shadow:0 20px 40px rgba(0,0,0,0.4);
 
 /* LANDING LAYER */
 #landing-layer {
-  position: fixed; /* boven alles */
-  top: 0;
-  left: 0;
-  width: 100%;
+  position: relative; /* boven alles */
   height: 100vh;
-  background: #111; /* donkere overlay */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* boven container */
-  transform: translateY(0); /* startpositie */
-  transition: transform 0.6s ease; /* smooth beweging */
+  background: #111;
+  overflow: auto; /* zodat de gebruiker kan scrollen als content te groot is */
 }
 
 #landing-layer h1 {
