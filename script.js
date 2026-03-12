@@ -1,11 +1,12 @@
+document.addEventListener("DOMContentLoaded", () => {
+
 const scroller = scrollama();
 
 const textLayer = document.getElementById("text-layer");
 const backgroundLayer = document.getElementById("background-layer");
 
 let scrollPosition = 0;
-
-const maxScroll = window.innerHeight * 12;
+let maxScroll = window.innerHeight * 12;
 
 
 
@@ -36,12 +37,21 @@ updateScroll();
 
 scroller
 .setup({
-step:".step",
-offset:0.5
+step: ".step",
+offset: 0.5
 })
+.onStepEnter((response)=>{
 
-.onStepEnter(response=>{
+console.log("Step:", response.index);
 
-console.log("Step:",response.index);
+});
+
+
+
+window.addEventListener("resize", ()=>{
+
+maxScroll = window.innerHeight * 12;
+
+});
 
 });
