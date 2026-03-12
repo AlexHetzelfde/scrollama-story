@@ -45,10 +45,20 @@ document.addEventListener("DOMContentLoaded", () => {
   // ====== GORDIJN-LANDING EFFECT (WHEEL GEBRUIK) ======
   const landingLayer = document.getElementById("landing-layer");
 
-window.addEventListener("wheel", (e) => {
-  // deltaY < 0 betekent scroll omhoog
-  if (e.deltaY < 0) {
-    landingLayer.style.transform = "translateY(-100%)"; // gordijn omhoog
+// START STORY ONLY AFTER LANDING SCROLL
+const landingHeight = document.getElementById("landing-layer").offsetHeight;
+const container = document.getElementById("container");
+const textLayer = document.getElementById("text-layer");
+const backgroundLayer = document.getElementById("background-layer");
+
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+
+  if (scrollY >= landingHeight) {
+    // Start parallax van je bestaande content
+    const scrollPosition = scrollY - landingHeight;
+    textLayer.style.transform = `translateY(${-scrollPosition}px)`;
+    backgroundLayer.style.transform = `translateY(${-scrollPosition * 0.6}px)`;
   }
 });
 
