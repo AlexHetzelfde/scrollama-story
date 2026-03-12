@@ -2,122 +2,102 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<title>Scrollama Achtergrond Afbeeldingen</title>
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    font-family: Arial, sans-serif;
-  }
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  /* Achtergrond div */
-  #bg {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
-    transition: background-image 0.8s ease;
-    background-size: cover;
-    background-position: center;
-  }
+<title>Waterstof Storytelling</title>
 
-  section {
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    box-sizing: border-box;
-  }
+<link rel="stylesheet" href="style.css">
 
-  .text-block {
-    background: rgba(255,255,255,0.5);
-    padding: 30px;
-    border-radius: 10px;
-    max-width: 800px;
-    font-size: 1.2em;
-    line-height: 1.6em;
-    text-align: justify;
-  }
-</style>
+<!-- Scrollama -->
+<script src="https://unpkg.com/scrollama"></script>
+
 </head>
+
 <body>
 
-<!-- Achtergrond -->
-<div id="bg"></div>
+<div id="container">
 
-<!-- Tekstblokken -->
+    <!-- BACKGROUND LAYER -->
+    <div id="background-layer">
 
-<section>
-  <div class="text-block">
-    Iranische president Pezeshkian zegt dat de strijdkrachten geen buurlanden meer aanvallen of raketten afvuren, tenzij Iran zelf wordt aangevallen. Het is nog onduidelijk of de aanvallen daadwerkelijk worden gestaakt.
-  </div>
-</section>
+        <!-- 13 achtergronden -->
+        <div class="bg-panel color1"></div>
+        <div class="bg-panel color2"></div>
+        <div class="bg-panel color3"></div>
+        <div class="bg-panel color4"></div>
+        <div class="bg-panel color5"></div>
+        <div class="bg-panel color6"></div>
+        <div class="bg-panel color7"></div>
+        <div class="bg-panel color8"></div>
+        <div class="bg-panel color9"></div>
+        <div class="bg-panel color10"></div>
+        <div class="bg-panel color11"></div>
+        <div class="bg-panel color12"></div>
+        <div class="bg-panel color13"></div>
 
-<!-- EXTRA FOTO ZONDER TEKST -->
-<section></section>
+    </div>
 
-<section>
-  <div class="text-block">
-    Bij Israëlische luchtaanvallen en commandoacties in Oost-Libanon vielen ruim 40 doden. De stad Nabi Chit raakte zwaar beschadigd, tientallen mensen raakten gewond.
-  </div>
-</section>
 
-<section>
-  <div class="text-block">
-    Nederlanders worden geëvacueerd uit Qatar en andere landen; vluchten naar Rome, Parijs, Londen en Frankfurt vertrekken. Passagiers ervaren spanning tijdens vertrek, maar zijn opgelucht na opstijgen.
-  </div>
-</section>
+    <!-- FOREGROUND TEXT -->
+    <div id="text-layer">
 
-<section>
-  <div class="text-block">
-    In Iran communiceren mensen via tussenpersonen over hun ervaringen tijdens de aanvallen. Het internet ligt grotendeels plat, waardoor direct contact moeilijk is. Mensen delen hun angst, zorgen en hoop.
-  </div>
-</section>
+        <div class="step left"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 1 -->
+        </div></div>
 
-<section>
-  <div class="text-block">
-    Hezbollah roept inwoners van Noord-Israël op te evacueren; het Israëlische leger doet soortgelijke waarschuwingen voor Libanese steden. Buitenlands personeel van oliebedrijven wordt geëvacueerd uit Irak en Koeweit.
-  </div>
-</section>
+        <div class="step right"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 2 -->
+        </div></div>
 
-<section>
-  <div class="text-block">
-    De Arabische Liga houdt spoedoverleg over de aanvallen. De VS en Iran zijn aartsvijanden, Iran stopte voorlopig met aanvallen op buurlanden. Er worden militaire repatriëringsacties uitgevoerd voor gestrande Nederlanders, en de situatie in het Midden-Oosten blijft onvoorspelbaar.
-  </div>
-</section>
+        <div class="step left"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 3 -->
+        </div></div>
 
-<script src="https://unpkg.com/scrollama"></script>
-<script>
-const scroller = scrollama();
-const bg = document.getElementById('bg');
+        <div class="step right"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 4 -->
+        </div></div>
 
-/* Achtergrondafbeeldingen per stap */
-const backgrounds = [
-  "images/foto1.jpg", // tekstblok 1
-  "images/foto2.jpg", // lege foto
-  "images/foto3.jpg", // tekstblok 2
-  "", 
-  "", 
-  "", 
-  ""
-];
+        <div class="step left"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 5 -->
+        </div></div>
 
-scroller.setup({
-  step: 'section',
-  offset: 0.5
-})
-.onStepEnter(({ index }) => {
+        <div class="step right"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 6 -->
+        </div></div>
 
-  if(backgrounds[index]) {
-    bg.style.backgroundImage = `url(${backgrounds[index]})`;
-  }
+        <div class="step left"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 7 -->
+        </div></div>
 
-});
-</script>
+        <div class="step right"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 8 -->
+        </div></div>
+
+        <div class="step left"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 9 -->
+        </div></div>
+
+        <div class="step right"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 10 -->
+        </div></div>
+
+        <div class="step left"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 11 -->
+        </div></div>
+
+        <div class="step right"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 12 -->
+        </div></div>
+
+        <div class="step left"><div class="textbox">
+        <!-- HIER KOMT TEKST BLOK 13 -->
+        </div></div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
 
 </body>
 </html>
