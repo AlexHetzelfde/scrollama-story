@@ -42,20 +42,14 @@ document.addEventListener("DOMContentLoaded", () => {
     maxScroll = window.innerHeight * steps.length;
   });
 
-
-  // ====== GORDIJN-LANDING EFFECT ======
-  let lastScroll = window.scrollY;
+  // ====== GORDIJN-LANDING EFFECT (WHEEL GEBRUIK) ======
   const landingLayer = document.getElementById("landing-layer");
 
-  window.addEventListener("scroll", () => {
-    let currentScroll = window.scrollY;
-
-    // Als de gebruiker omhoog scrollt, schuif landing omhoog
-    if (currentScroll < lastScroll) {
-      landingLayer.style.transform = "translateY(-100%)"; // gordijn omhoog
-    }
-
-    lastScroll = currentScroll;
-  });
+window.addEventListener("wheel", (e) => {
+  // deltaY < 0 betekent scroll omhoog
+  if (e.deltaY < 0) {
+    landingLayer.style.transform = "translateY(-100%)"; // gordijn omhoog
+  }
+});
 
 });
