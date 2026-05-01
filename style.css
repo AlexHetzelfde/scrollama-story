@@ -12,6 +12,20 @@ body {
 }
 
 /* =========================
+   PROGRESS BAR
+========================= */
+#progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: rgba(203, 174, 73, 0.9);
+  z-index: 10000;
+  transition: width 0.1s linear;
+}
+
+/* =========================
    INTRO GORDIJN
 ========================= */
 #landing-layer {
@@ -49,7 +63,6 @@ body {
   font-size: 6rem;
   font-weight: bold;
   color: rgba(203, 174, 73, 0.8);
-  font-family: Arial, Helvetica, sans-serif;
   pointer-events: none;
   opacity: 0;
   transition: opacity 0.8s ease;
@@ -57,6 +70,41 @@ body {
 }
 #year-display.visible {
   opacity: 1;
+}
+
+/* =========================
+   NAV DOTS
+========================= */
+#nav-dots {
+  position: fixed;
+  right: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+#nav-dots.visible {
+  opacity: 1;
+}
+.nav-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+.nav-dot:hover {
+  transform: scale(1.4);
+}
+.nav-dot.active {
+  background: rgba(203, 174, 73, 0.9);
+  border-color: rgba(203, 174, 73, 0.9);
 }
 
 /* =========================
@@ -71,7 +119,7 @@ body {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 1s ease;
 }
 .bg-slide.active {
   opacity: 1;
@@ -84,6 +132,10 @@ body {
   position: relative;
   z-index: 1;
 }
+
+/* =========================
+   INFO SCENE
+========================= */
 .scene {
   min-height: 100vh;
   display: flex;
@@ -96,7 +148,15 @@ body {
 }
 
 /* =========================
-   TEKSTBOXJE
+   QUOTE SCENE
+========================= */
+.scene[data-type="quote"] {
+  justify-content: center;
+  align-items: center;
+}
+
+/* =========================
+   TEKSTBOX
 ========================= */
 .textbox {
   background: rgba(255, 255, 255, 0.92);
@@ -106,5 +166,252 @@ body {
   max-width: 80%;
   font-size: 18px;
   line-height: 1.7;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.textbox.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   QUOTE BOX
+========================= */
+.quote-box {
+  text-align: center;
+  max-width: 680px;
+  padding: 40px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.quote-box.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.quote-box blockquote {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  font-style: italic;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+  color: white;
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.8), 0 0 60px rgba(0, 0, 0, 0.5);
+}
+.quote-box cite {
+  font-size: 1rem;
+  color: rgba(203, 174, 73, 0.9);
+  letter-spacing: 1px;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* =========================
+   BRONNEN SCENE
+========================= */
+.scene[data-type="bronnen"] {
+  justify-content: center;
+  align-items: center;
+  background: #111;
+}
+.bronnen-box {
+  text-align: center;
+  max-width: 600px;
+  padding: 40px;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.bronnen-box.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.bronnen-box h2 {
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  color: rgba(203, 174, 73, 0.95);
+  margin-bottom: 2rem;
+  letter-spacing: 2px;
+}
+.bronnen-box ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.bronnen-box ul li a {
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(203, 174, 73, 0.3);
+  padding-bottom: 4px;
+  transition: color 0.3s, border-color 0.3s;
+}
+.bronnen-box ul li a:hover {
+  color: rgba(203, 174, 73, 0.95);
+  border-color: rgba(203, 174, 73, 0.8);
+}
+
+/* =========================
+   EN NU LAAG
+========================= */
+#ennu-layer {
+  position: fixed;
+  inset: 0;
+  background: #111;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transform: translateY(100vh);
+  will-change: transform;
+}
+
+#ennu-heading {
+  position: absolute;
+  top: 48px;
+  font-family: Georgia, serif;
+  font-size: 3rem;
+  font-style: italic;
+  font-weight: normal;
+  color: rgba(203, 174, 73, 0.9);
+  letter-spacing: 4px;
+}
+
+#ennu-year-label {
+  position: absolute;
+  top: 118px;
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: rgba(203, 174, 73, 0.65);
+  letter-spacing: 3px;
+  transition: opacity 0.4s ease;
+}
+
+/* Container voor foto + tekst samen */
+#ennu-photo-container {
+  position: absolute;
+  top: 170px;
+  bottom: 50px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Elke slide = foto links + tekst rechts */
+.ennu-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5vw;
+  padding: 0 6vw;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  pointer-events: none;
+}
+.ennu-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Foto */
+.ennu-photo {
+  max-height: 100%;
+  max-width: 32vw;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7);
+  flex-shrink: 0;
+}
+
+/* Tekst rechts */
+.ennu-text {
+  max-width: 340px;
+  flex-shrink: 0;
+}
+
+.ennu-text-inner {
+  opacity: 0;
+  transform: translateX(30px);
+  transition: opacity 0.7s ease 0.5s, transform 0.7s ease 0.5s;
+}
+
+.ennu-slide.active .ennu-text-inner {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Gouden streep boven de tekst */
+.ennu-text-line {
+  width: 48px;
+  height: 2px;
+  background: rgba(203, 174, 73, 0.8);
+  margin-bottom: 20px;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease 0.8s;
+}
+
+.ennu-slide.active .ennu-text-line {
+  transform: scaleX(1);
+}
+
+.ennu-text p {
+  font-family: Georgia, serif;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.82);
+  font-style: italic;
+}
+
+/* spacer */
+#ennu-spacer {
+  height: 700vh;
+}
+
+/* =========================
+   MOBIEL
+========================= */
+@media (max-width: 600px) {
+  #year-display {
+    font-size: 3.5rem;
+    top: 20px;
+    left: 20px;
+  }
+  #landing-layer h1 { font-size: 2.5rem; }
+  #landing-layer h2 { font-size: 1.3rem; }
+  #nav-dots { right: 12px; gap: 10px; }
+  .textbox { width: 85vw; font-size: 15px; padding: 20px; }
+  .quote-box blockquote { font-size: 1.3rem; }
+  .scene { padding: 40px 5vw; justify-content: center !important; }
+  .bronnen-box { padding: 24px; }
+  .bronnen-box h2 { font-size: 1.5rem; }
+
+  /* En nu mobiel: foto boven, tekst onder */
+  .ennu-slide {
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 6vw;
+    justify-content: center;
+    overflow-y: auto;
+  }
+  .ennu-photo {
+    max-width: 70vw;
+    max-height: 45vh;
+  }
+  .ennu-text {
+    max-width: 85vw;
+  }
+  .ennu-text p { font-size: 0.95rem; }
+  #ennu-heading { font-size: 2rem; top: 32px; }
+  #ennu-year-label { font-size: 1.2rem; top: 88px; }
+  #ennu-photo-container { top: 130px; bottom: 20px; }
 }
